@@ -2,8 +2,8 @@ const { response } = require("express");
 const bcrypt = require("bcryptjs");
 
 const Usuario = require("../models/usuario");
-const { generarJWT } = require("../helpers/jsw");
-
+const { generarJWT } = require("../helpers/jwt");
+const usuario = require('../models/usuario');
 
 const crearUsuario = async (req, res = response) => {
 
@@ -66,7 +66,7 @@ const login = async (req, res = response) => {
         if (!validPassword) {
             return res.status(404).json({
                 ok: false,
-                msg: "error 404 on password"
+                msg: "Invalid password (404)"
             }
             );
         }
